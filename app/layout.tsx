@@ -12,6 +12,8 @@ import "./globals.css";
 //   subsets: ["latin"],
 // });
 
+import Header from "@/components/Header/Header";
+
 export const metadata: Metadata = {
   title: "Rental Car",
   description: "Izi rent car",
@@ -24,7 +26,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <header>
+          <Header />
+        </header>
+
+        <main>{children}</main>
+        <div id="loader-root"></div>
+        <footer>
+          <p>Rental Car Footer</p>
+          <p>
+            Created <time dateTime="2025">2025</time>
+          </p>
+        </footer>
+      </body>
     </html>
   );
 }
