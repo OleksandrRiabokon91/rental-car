@@ -1,47 +1,35 @@
 // app/catalog/page.tsx
 "use client";
 
-import { useState } from "react";
-// import Loader from "@/components/Loader/Loader";
+import { useState, useEffect } from "react";
 import { GetCars } from "@/lib/api";
 import { Car, CarsResp } from "@/lib/types";
-import Image from "next/image";
+import CarCard from "@/components/CarCard/CarCard";
 
 export default function CarsList() {
   const [cars, setCars] = useState<Car[]>([]);
-  //   const [loading, setLoading] = useState(false);
 
-  //   async function test() {
-  //     const res = await GetCars();
-  //     console.log("RES:", res.cars);
-  //   }
-  //   test();
-  // переименовали функцию, чтобы не конфликтовать с импортом
-  async function fetchCars() {
-    const data: CarsResp = await GetCars(); // указываем тип здесь
-    setCars(data.cars); // просто присваиваем массив
-  }
+  // useEffect с пустым массивом зависимостей => выполняется один раз при монтировании
+  useEffect(() => {
+    async function fetchCars() {
+      try {
+        const data: CarsResp = await GetCars(); // указываем тип
+        setCars(data.cars);
+      } catch (error) {
+        console.error("Ошибка при загрузке машин:", error);
+      }
+    }
+
+    fetchCars();
+  }, []);
 
   return (
-    <>
-      {/* {loading && <Loader />} */}
-      <button onClick={fetchCars}>Загрузить машины</button>
-      <ul>
-        {cars.map((car) => (
-          <li key={car.id}>
-            <Image
-              src={car.img}
-              alt={`${car.brand} ${car.model}`}
-              width={300}
-              height={200}
-              style={{ borderRadius: "6px", objectFit: "cover" }}
-            />
-            <p>
-              {car.brand} {car.model}
-            </p>
-          </li>
-        ))}
-      </ul>
-    </>
+    <ul>
+      {cars.map((car) => (
+        <li key={car.id}>
+          <CarCard {...car} />
+        </li>
+      ))}
+    </ul>
   );
 }
