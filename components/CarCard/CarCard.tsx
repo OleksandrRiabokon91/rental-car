@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import css from "./Car.Card.module.css";
+import { formatNumberWithSpaces } from "@/lib/utils";
 
 // Типизация пропсов для компонента CarCard
 export type CarCardProps = {
@@ -15,11 +16,6 @@ export type CarCardProps = {
   mileage: number;
   type: string;
 };
-
-// Утилита для форматирования числа с пробелами
-function formatNumberWithSpaces(num: number): string {
-  return new Intl.NumberFormat("ru-RU").format(num);
-}
 
 // Компонент CarCard
 export default function CarCard(props: CarCardProps) {

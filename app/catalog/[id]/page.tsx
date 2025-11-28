@@ -1,11 +1,17 @@
 // Этот файл — серверный компонент
 // Он получает params как Promise, поэтому нужно использовать await
 import CarPageClient from "./CarPageClient";
+import { getCarById } from "@/lib/api";
 
-export default async function Page({ params }: { params: { id: string } }) {
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function Page({ params }: Props) {
   // Разворачиваем Promise
   const { id } = await params;
-
+  // console.log("note id:", id);
   // Передаём id в клиентский компонент
-  return <CarPageClient id={id} />;
+  const carData = await getCarById(id);
+  return <CarPageClient initialCar={carData} />;
 }
