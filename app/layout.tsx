@@ -30,9 +30,8 @@ export default function RootLayout({
         <header>
           <Header />
         </header>
-
         <main>{children}</main>
-        <div id="loader-root"></div>
+        {/* <div id="loader-root" /> */}
         <footer>
           <p>Rental Car Footer</p>
           <p>

@@ -14,13 +14,15 @@
     "next": "16.0.4",
     "react": "19.2.0",
     "react-dom": "19.2.0",
-    "react-loader-spinner": "^8.0.0"
+    "react-loader-spinner": "^8.0.0",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
+    "baseline-browser-mapping": "^2.8.32",
     "eslint": "^9",
     "eslint-config-next": "16.0.4",
     "eslint-config-prettier": "^10.1.8",

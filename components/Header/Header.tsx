@@ -1,7 +1,7 @@
 import Link from "next/link";
 export default function Header() {
   return (
-    <div>
+    <div className="container">
       <Link href="/">
         {/* <image href="" /> */}
         Logo

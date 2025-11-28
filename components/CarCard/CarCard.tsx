@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import css from "./Car.Card.module.css";
 
 // Типизация пропсов для компонента CarCard
 export type CarCardProps = {
@@ -47,8 +48,8 @@ export default function CarCard(props: CarCardProps) {
     addressParts.length >= 1 ? addressParts[addressParts.length - 1] : "";
 
   return (
-    <div className="car-card">
-      <Image src={img} alt={`${brand} ${model}`} width={400} height={250} />
+    <div className={css.carCard}>
+      <Image src={img} alt={`${brand} ${model}`} width={276} height={268} />
       <h3>
         {brand} {model}, {year} ${rentalPrice}
       </h3>
