@@ -7,10 +7,15 @@ import { Car, CarsResp } from "./types";
 //   return res.data;
 // }
 
-export const getCars = async (): Promise<CarsResp> => {
-  const res = await axios.get("/cars"); // GET всех машин
+export const getCars = async (query = ""): Promise<CarsResp> => {
+  const res = await axios.get(`/cars?${query}`); // GET всех машин
   return res.data;
 };
+
+// export const getCars = async () => {
+//   const res = await axios.get();
+//   return res.data;
+// };
 
 export const getCarById = async (id: string): Promise<Car> => {
   const res = await axios.get(`/cars/${id}`);
