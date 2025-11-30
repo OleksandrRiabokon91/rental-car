@@ -21,6 +21,7 @@ export default function CarsList() {
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
 
+  // Функция загрузки машин
   const fetchCars = async (targetPage: number, reset = false) => {
     if (loading) return;
     setLoading(true);
@@ -45,22 +46,24 @@ export default function CarsList() {
     setLoading(false);
   };
 
+  // Поиск с фильтрами
   const handleSearch = async () => {
     await fetchCars(1, true);
-    setPage(1); // теперь после загрузки
+    setPage(1);
   };
 
+  // Подгрузка следующей страницы
   const handleLoadMore = async () => {
     const nextPage = page + 1;
     setPage(nextPage);
     await fetchCars(nextPage);
   };
 
-  // Загрузка первой страницы при первом рендере каталога
+  // Загрузка первой страницы при рендере
   useEffect(() => {
     const loadInitial = async () => {
-      await fetchCars(1, true); // передаем 1 напрямую
-      setPage(1); // setState после await
+      await fetchCars(1, true);
+      setPage(1);
     };
     loadInitial();
   }, []);
