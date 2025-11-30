@@ -7,11 +7,31 @@ import { Car, CarsResp } from "./types";
 //   return res.data;
 // }
 
-export const getCars = async (query = ""): Promise<CarsResp> => {
-  const res = await axios.get(`/cars?${query}`); // GET всех машин
+export const getCars = async (
+  params: {
+    brand?: string;
+    rentalPrice?: string;
+    minMileage?: string;
+    maxMileage?: string;
+    limit?: string;
+    page?: string;
+  } = {}
+): Promise<CarsResp> => {
+  const queryString = new URLSearchParams(
+    Object.entries(params).reduce(
+      (acc, [key, value]) => {
+        if (value !== undefined && value !== null && value !== "") {
+          acc[key] = String(value);
+        }
+        return acc;
+      },
+      {} as Record<string, string>
+    )
+  ).toString();
+
+  const res = await axios.get(`/cars?${queryString}`);
   return res.data;
 };
-
 // export const getCars = async () => {
 //   const res = await axios.get();
 //   return res.data;
