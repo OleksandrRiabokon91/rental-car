@@ -1,0 +1,62 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.heroContent {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 783px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 5;
+}
+
+.heroContent h1 {
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 120%;
+  color: var(--white);
+  margin: 0;
+}
+
+.heroContent p {
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--white);
+  margin: 16px 0 32px 0;
+}
+
+.heroBtn {
+  display: inline-block;
+  border-radius: 12px;
+  padding: 12px 88px;
+  width: 276px;
+  height: 44px;
+  background-color: var(--button);
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--white);
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s;
+}
+
+.heroBtn:hover {
+  transform: scale(1.05);
+  background-color: var(--button-hover);
+}

@@ -1,5 +1,78 @@
 .carCard {
-  /* display: inline; */
   width: 276px;
   height: 424px;
+  display: inline-flex;
+  flex-direction: column;
+
+  /* высота можно авто или фиксированная */
+}
+
+.imgWrapper {
+  position: relative;
+  width: 100%;
+  height: 268px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.carImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.imgWrapper button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.imgWrapper button svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--badges);
+}
+
+.btn {
+  display: inline-block; /* или block */
+  border: none;
+  border-radius: 12px;
+  padding: 12px 0; /* только вертикальные паддинги */
+  width: 100%;
+  text-align: center; /* горизонтальное центрирование текста */
+
+  background-color: var(--button);
+  cursor: pointer;
+
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--white);
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s;
+}
+.btn:hover {
+  transform: scale(1.05);
+  background-color: var(--button-hover);
+}
+
+.p {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 133%;
+  color: var(--gray);
 }

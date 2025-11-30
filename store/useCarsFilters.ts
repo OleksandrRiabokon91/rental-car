@@ -6,15 +6,11 @@ interface CarsFiltersState {
   rentalPrice: string;
   minMileage: string;
   maxMileage: string;
-  limit: string;
-  page: string;
 
   setBrand: (v: string) => void;
   setRentalPrice: (v: string) => void;
   setMinMileage: (v: string) => void;
   setMaxMileage: (v: string) => void;
-  setLimit: (v: string) => void;
-  setPage: (v: string) => void;
 
   resetFilters: () => void;
   getParams: () => Record<string, string>;
@@ -27,15 +23,11 @@ export const useCarsFilters = create<CarsFiltersState>()(
       rentalPrice: "",
       minMileage: "",
       maxMileage: "",
-      limit: "12",
-      page: "1",
 
-      setBrand: (v) => set({ brand: v, page: "1" }),
-      setRentalPrice: (v) => set({ rentalPrice: v, page: "1" }),
-      setMinMileage: (v) => set({ minMileage: v, page: "1" }),
-      setMaxMileage: (v) => set({ maxMileage: v, page: "1" }),
-      setLimit: (v) => set({ limit: v }),
-      setPage: (v) => set({ page: v }),
+      setBrand: (v) => set({ brand: v }),
+      setRentalPrice: (v) => set({ rentalPrice: v }),
+      setMinMileage: (v) => set({ minMileage: v }),
+      setMaxMileage: (v) => set({ maxMileage: v }),
 
       resetFilters: () =>
         set({
@@ -43,21 +35,26 @@ export const useCarsFilters = create<CarsFiltersState>()(
           rentalPrice: "",
           minMileage: "",
           maxMileage: "",
-          page: "1",
         }),
 
       getParams: () => {
-        const state = get();
+        const s = get();
         return {
-          brand: state.brand,
-          rentalPrice: state.rentalPrice,
-          minMileage: state.minMileage,
-          maxMileage: state.maxMileage,
-          limit: state.limit,
-          page: state.page,
+          brand: s.brand,
+          rentalPrice: s.rentalPrice,
+          minMileage: s.minMileage,
+          maxMileage: s.maxMileage,
         };
       },
     }),
-    { name: "cars-filters-storage" }
+    {
+      name: "cars-filters-storage",
+      partialize: (state) => ({
+        brand: state.brand,
+        rentalPrice: state.rentalPrice,
+        minMileage: state.minMileage,
+        maxMileage: state.maxMileage,
+      }),
+    }
   )
 );

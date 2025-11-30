@@ -48,21 +48,37 @@ export default function CarCard(props: CarCardProps) {
 
   return (
     <div className={css.carCard}>
-      <Image src={img} alt={`${brand} ${model}`} width={276} height={268} />{" "}
+      <div className={css.imgWrapper}>
+        <Image
+          src={img}
+          alt={`${brand} ${model}`}
+          width={276}
+          height={268}
+          className={css.carImg}
+        />
+        <button onClick={() => toggleFavorite(id)}>
+          {isFav ? (
+            <svg>
+              <use href="/symbol-defs.svg#icon-like-yes" />
+            </svg>
+          ) : (
+            <svg>
+              <use href="/symbol-defs.svg#icon-like-no" />
+            </svg>
+          )}
+        </button>
+      </div>
+
       <h3>
-        {brand} {model}, {year} ${rentalPrice}{" "}
-      </h3>{" "}
-      <p>
-        {city} | {country} | {rentalCompany} <br /> {type} | {km} km{" "}
+        {brand} {model}, {year} ${rentalPrice}
+      </h3>
+      <p className={css.p}>
+        {city} | {country} | {rentalCompany} <br />
+        {type} | {km} km
       </p>
-      <Link href={`/catalog/${id}`}>Read More</Link>
-      {/* Кнопка избранного */}
-      <button
-        className={isFav ? css.favActive : css.fav} // можно в CSS сделать разный стиль
-        onClick={() => toggleFavorite(id)}
-      >
-        {isFav ? "❤️" : "🤍"}
-      </button>
+      <Link className={css.btn} href={`/catalog/${id}`}>
+        Read More
+      </Link>
     </div>
   );
 }

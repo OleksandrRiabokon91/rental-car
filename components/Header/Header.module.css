@@ -1,0 +1,27 @@
+/* .logo {
+  margin: 26px auto 26px 120px;
+} */
+
+.navBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 120px;
+  
+}
+.navList {
+  display: flex;
+  gap: 32px;
+}
+.navList a {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  text-align: center;
+  color: var(--main);
+}
+
+.navList a.active {
+  color: var(--button); /* цвет активной ссылки */
+}

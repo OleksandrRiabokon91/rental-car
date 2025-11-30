@@ -1,6 +1,6 @@
 // app/catalog/CarFilters.tsx
 "use client";
-
+import css from "./CarFilters.module.css";
 import { useState, useEffect } from "react";
 import { getBrands } from "@/lib/api";
 import { useCarsFilters } from "@/store/useCarsFilters";
@@ -19,7 +19,6 @@ export default function CarFilters({ onSearch }: CarFiltersProps) {
     setRentalPrice,
     setMinMileage,
     setMaxMileage,
-    setPage,
   } = useCarsFilters();
 
   const [brands, setBrands] = useState<string[]>([]);
@@ -38,35 +37,31 @@ export default function CarFilters({ onSearch }: CarFiltersProps) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Обновляем глобальные фильтры Zustand
     setBrand(localBrand);
     setRentalPrice(localRentalPrice);
     setMinMileage(localMinMileage);
     setMaxMileage(localMaxMileage);
-    setPage("1"); // сброс страницы при новом поиске
 
-    // Вызываем загрузку на странице
     onSearch();
   };
 
   return (
-    <form onSubmit={handleSubmit} className="filters">
-      {" "}
+    <form onSubmit={handleSubmit} className={css.filters}>
       <label>
         Brand:
         <select
           value={localBrand}
           onChange={(e) => setLocalBrand(e.target.value)}
         >
-          {" "}
           <option value="">Any</option>
           {brands.map((b) => (
             <option key={b} value={b}>
-              {b}{" "}
+              {b}
             </option>
-          ))}{" "}
-        </select>{" "}
+          ))}
+        </select>
       </label>
+
       <label>
         Price:
         <select
@@ -76,11 +71,12 @@ export default function CarFilters({ onSearch }: CarFiltersProps) {
           <option value="">Any</option>
           {priceOptions.map((p) => (
             <option key={p} value={String(p)}>
-              ${p}
+              {p}
             </option>
           ))}
         </select>
       </label>
+
       <label>
         Mileage (km):
         <input
@@ -96,7 +92,10 @@ export default function CarFilters({ onSearch }: CarFiltersProps) {
           onChange={(e) => setLocalMaxMileage(e.target.value)}
         />
       </label>
-      <button type="submit">Search</button>
+
+      <button className={css.btn} type="submit">
+        Search
+      </button>
     </form>
   );
 }

@@ -7,7 +7,7 @@ import { Car } from "@/lib/types";
 import { useCarStore } from "@/store/useCarStore";
 import { useCarsFilters } from "@/store/useCarsFilters";
 import CarCard from "@/components/CarCard/CarCard";
-import CarFilters from "./CarFilters";
+import CarFilters from "../../components/CarFilters/CarFilters";
 
 import css from "./CarsList.module.css";
 
@@ -21,13 +21,13 @@ export default function CarsList() {
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  // Функция загрузки машин
   const fetchCars = async (targetPage: number, reset = false) => {
     if (loading) return;
     setLoading(true);
 
     const params = filtersStore.getParams();
     const query = { ...params, page: String(targetPage), limit: "12" };
+
     const data: { cars: Car[] } = await getCars(query);
 
     if (reset) {
@@ -46,32 +46,29 @@ export default function CarsList() {
     setLoading(false);
   };
 
-  // Поиск с фильтрами
   const handleSearch = async () => {
     await fetchCars(1, true);
     setPage(1);
   };
 
-  // Подгрузка следующей страницы
   const handleLoadMore = async () => {
     const nextPage = page + 1;
     setPage(nextPage);
     await fetchCars(nextPage);
   };
 
-  // Загрузка первой страницы при рендере
   useEffect(() => {
     const loadInitial = async () => {
       await fetchCars(1, true);
-      setPage(1);
     };
+
     loadInitial();
   }, []);
 
   return (
     <div className="container">
-      {" "}
       <CarFilters onSearch={handleSearch} />
+
       <ul className={css.contentBox}>
         {cars.map((car) => (
           <li key={car.id}>
@@ -79,6 +76,7 @@ export default function CarsList() {
           </li>
         ))}
       </ul>
+
       {hasMore && (
         <button
           onClick={handleLoadMore}

@@ -1,0 +1,29 @@
+.filters {
+  margin: 0 auto;
+  padding-top: 84px;
+  padding-bottom: 45px;
+  width: 924px;
+}
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 51px;
+
+  background-color: var(--button);
+  cursor: pointer;
+
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--white);
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+  background-color: var(--button-hover);
+}
